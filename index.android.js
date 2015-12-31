@@ -52,11 +52,15 @@ var AwesomeProject = React.createClass({
     }
 
     return (
+      <View>
+      <Text > 便利贴</Text>
       <ListView
         dataSource={this.state.dataSource}
         renderRow={this.renderMovie}
         style={styles.listView}
       />
+
+      </View>
     );
   },
 
