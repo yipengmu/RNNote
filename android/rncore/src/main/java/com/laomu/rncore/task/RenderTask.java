@@ -6,8 +6,8 @@ import android.os.AsyncTask;
 import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactRootView;
 import com.laomu.rncore.RNCore;
-import com.laomu.rncore.Utils.RNLog;
-import com.laomu.rncore.Utils.RNUtils;
+import com.laomu.rncore.utils.RNLog;
+import com.laomu.rncore.utils.RNUtils;
 import com.laomu.rncore.callback.RenderCallback;
 import com.laomu.rncore.download.DownloadManager;
 

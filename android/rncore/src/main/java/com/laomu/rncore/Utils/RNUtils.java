@@ -1,4 +1,4 @@
-package com.laomu.rncore.Utils;
+package com.laomu.rncore.utils;
 
 import java.io.File;
 
