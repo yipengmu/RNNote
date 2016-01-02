@@ -47,13 +47,19 @@ var AwesomeProject = React.createClass({
   },
 
   render: function() {
-    if (!this.state.loaded) {
-      return this.renderLoadingView();
-    }
+    //
+    // if (!this.state.loaded) {
+    //   return this.renderLoadingView();
+    // }
 
     return (
       <View>
-      <Text > 便利贴</Text>
+      <View style={{flex: 1,flexDirection: 'row',ustifyContent: 'center'}}>
+        <Image source={{uri: 'https://facebook.github.io/react/img/logo_og.png'}} style={{width: 30, height: 30}}  />
+        <Text > 便利贴</Text>
+        <Image source={{uri: 'https://facebook.github.io/react/img/logo_og.png'}} style={{width: 30, height: 30}} />
+      </View>
+
       <ListView
         dataSource={this.state.dataSource}
         renderRow={this.renderMovie}
