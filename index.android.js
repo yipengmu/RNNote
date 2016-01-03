@@ -53,20 +53,26 @@ var AwesomeProject = React.createClass({
     // }
 
     return (
-      <View>
-      <View style={{flex: 1,flexDirection: 'row',ustifyContent: 'center'}}>
+      <View style={{backgroundColor: '#127334'}}>
+      <View style={styles.header}>
         <Image source={{uri: 'https://facebook.github.io/react/img/logo_og.png'}} style={{width: 30, height: 30}}  />
-        <Text > 便利贴</Text>
+        <Text > 便利贴 </Text>
         <Image source={{uri: 'https://facebook.github.io/react/img/logo_og.png'}} style={{width: 30, height: 30}} />
-      </View>
-
+        </View>
       <ListView
         dataSource={this.state.dataSource}
         renderRow={this.renderMovie}
         style={styles.listView}
       />
 
+
       </View>
+
+      // <ListView
+      //   dataSource={this.state.dataSource}
+      //   renderRow={this.renderMovie}
+      //   style={styles.listView}
+      // />
     );
   },
 
@@ -123,6 +129,14 @@ var styles = StyleSheet.create({
     paddingTop: 20,
     backgroundColor: '#F5FCFF',
   },
+  header:{
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 20,
+    alignItems : 'center',
+    backgroundColor: '#527FE4',
+  }
 });
 
 AppRegistry.registerComponent('RNNote', () => AwesomeProject);
