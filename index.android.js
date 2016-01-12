@@ -5,6 +5,9 @@
 'use strict';
 
 var React = require('react-native');
+
+var ToolbarAndroid = require('ToolbarAndroid');
+
 var {
   AppRegistry,
   Image,
@@ -53,26 +56,23 @@ var AwesomeProject = React.createClass({
     // }
 
     return (
-      <View style={{backgroundColor: '#127334'}}>
-      <View style={styles.header}>
-        <Image source={{uri: 'https://facebook.github.io/react/img/logo_og.png'}} style={{width: 30, height: 30}}  />
-        <Text > 便利贴 </Text>
-        <Image source={{uri: 'https://facebook.github.io/react/img/logo_og.png'}} style={{width: 30, height: 30}} />
+      <View style={styles.main_container}>
+        <ToolbarAndroid style={styles.toolbar}
+                        title={'jilu'}
+                        navIcon={{uri: "ic_arrow_back_white", isStatic: true}}
+                        titleColor={'#FFFFFF'}/>
+
+      	<View style={styles.header}>
+        	<Image source={require('./android/app/src/main/res/mipmap-hdpi/ic_launcher.png')} style={{width: 30, height: 30}}  />
+        	<Text > 记录 </Text>
+        	<Image source={{uri: 'rnnote'}} style={{width: 30, height: 30}} />
         </View>
-      <ListView
-        dataSource={this.state.dataSource}
-        renderRow={this.renderMovie}
-        style={styles.listView}
-      />
-
-
+       <ListView
+    		dataSource={this.state.dataSource}
+    		renderRow={this.renderMovie}
+    		style={styles.listView}
+    		/>
       </View>
-
-      // <ListView
-      //   dataSource={this.state.dataSource}
-      //   renderRow={this.renderMovie}
-      //   style={styles.listView}
-      // />
     );
   },
 
@@ -103,12 +103,20 @@ var AwesomeProject = React.createClass({
 });
 
 var styles = StyleSheet.create({
+  main_container: {
+    flex: 1
+  }
+  ,
   container: {
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
+  },
+  toolbar: {
+    height: 56,
+    backgroundColor: '#FF6600'
   },
   rightContainer: {
     flex: 1,
@@ -133,9 +141,8 @@ var styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 20,
     alignItems : 'center',
-    backgroundColor: '#527FE4',
+    backgroundColor: '#527F34',
   }
 });
 
