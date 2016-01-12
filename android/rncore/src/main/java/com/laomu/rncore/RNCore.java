@@ -8,6 +8,7 @@ import com.facebook.react.ReactInstanceManager;
  */
 public class RNCore {
     private static RNCore ins;
+    private ReactInstanceManager.Builder mBuilder;
 
     public RNCore() {
     }
@@ -22,15 +23,20 @@ public class RNCore {
 
     public ReactInstanceManager renderReactInstanceManager(String bundlePath, String moduleName) {
         ReactInstanceManager instanceManager = null;
-        instanceManager = ReactInstanceManager.builder()
+        instanceManager = fetchBuilder(bundlePath, moduleName).build();
+        return instanceManager;
+    }
+
+    private ReactInstanceManager.Builder fetchBuilder(String bundlePath, String moduleName) {
+        if(mBuilder == null){
+            mBuilder =  ReactInstanceManager.builder()
 //                    .setApplication(mApplication)
 //                    .addPackage(PackageHolder.holdAliRnPackage())
-                .setJSMainModuleName(moduleName)
-                .setJSBundleFile(bundlePath)
-                .setUseDeveloperSupport(false)
-                .setInitialLifecycleState(LifecycleState.RESUMED)
-                .build();
-
-        return instanceManager;
+                    .setJSMainModuleName(moduleName)
+                    .setJSBundleFile(bundlePath)
+                    .setUseDeveloperSupport(false)
+                    .setInitialLifecycleState(LifecycleState.RESUMED);
+        }
+        return mBuilder;
     }
 }

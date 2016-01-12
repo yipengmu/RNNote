@@ -20,15 +20,16 @@ public class MainActivity extends Activity implements DefaultHardwareBackBtnHand
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mReactRootView = new ReactRootView(this);
-
-        mReactInstanceManager = ReactInstanceManager.builder()
+        ReactInstanceManager.Builder mB =  ReactInstanceManager.builder()
                 .setApplication(getApplication())
                 .setBundleAssetName("index.android.bundle")
                 .setJSMainModuleName("index.android")
                 .addPackage(new MainReactPackage())
                 .setUseDeveloperSupport(BuildConfig.DEBUG)
-                .setInitialLifecycleState(LifecycleState.RESUMED)
-                .build();
+                .setInitialLifecycleState(LifecycleState.RESUMED);
+
+
+        mReactInstanceManager = mB.build();
 
         mReactRootView.startReactApplication(mReactInstanceManager, "RNNote", null);
 
