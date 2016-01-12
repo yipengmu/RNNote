@@ -39,4 +39,8 @@ public class RNCore {
         }
         return mBuilder;
     }
+
+    public ReactInstanceManager.Builder getBuilder() {
+        return mBuilder;
+    }
 }
