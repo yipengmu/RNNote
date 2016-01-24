@@ -10,6 +10,8 @@ import com.facebook.react.ReactRootView;
 import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
+import com.laomu.rncore.RNCore;
+import com.laomu.rncore.callback.RenderCallback;
 
 public class MainActivity extends Activity implements DefaultHardwareBackBtnHandler {
 
@@ -19,21 +21,38 @@ public class MainActivity extends Activity implements DefaultHardwareBackBtnHand
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        RNCore.init(getApplication());
         mReactRootView = new ReactRootView(this);
-        ReactInstanceManager.Builder mB =  ReactInstanceManager.builder()
+
+        mReactInstanceManager = ReactInstanceManager.builder()
                 .setApplication(getApplication())
                 .setBundleAssetName("index.android.bundle")
                 .setJSMainModuleName("index.android")
                 .addPackage(new MainReactPackage())
                 .setUseDeveloperSupport(BuildConfig.DEBUG)
-                .setInitialLifecycleState(LifecycleState.RESUMED);
-
-
-        mReactInstanceManager = mB.build();
+                .setInitialLifecycleState(LifecycleState.RESUMED)
+                .build();
 
         mReactRootView.startReactApplication(mReactInstanceManager, "RNNote", null);
 
         setContentView(mReactRootView);
+
+//        String mouduleName = "RNNote";
+//        String moudleUrl = "http://192.168.31.238:8081/index.android.bundle?platform=android";
+//
+//        RNCore.getInstance().render(moudleUrl,mouduleName,new RenderCallback(){
+//
+//            @Override
+//            public void onCreatedInstanceManager(ReactInstanceManager reactInstanceManager) {
+//                mReactInstanceManager = reactInstanceManager;
+//            }
+//
+//            @Override
+//            public void onRenderFinish(ReactRootView reactRootView) {
+//                setContentView(reactRootView);
+//            }
+//        });
     }
 
     @Override
@@ -72,8 +91,8 @@ public class MainActivity extends Activity implements DefaultHardwareBackBtnHand
     protected void onResume() {
         super.onResume();
 
-        if (mReactInstanceManager != null) {
-            mReactInstanceManager.onResume(this, this);
-        }
+//        if (mReactInstanceManager != null) {
+//            mReactInstanceManager.onResume(this, this);
+//        }
     }
 }

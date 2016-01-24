@@ -1,3 +1,4 @@
 rootProject.name = 'RNNote'
 
-include ':app', ':rncore'
+include ':app'
+include ':rncore'

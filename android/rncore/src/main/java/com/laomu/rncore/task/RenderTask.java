@@ -1,9 +1,11 @@
 package com.laomu.rncore.task;
 
 import android.app.Application;
+import android.content.Context;
 import android.os.AsyncTask;
 
 import com.facebook.react.ReactInstanceManager;
+import com.facebook.react.ReactPackage;
 import com.facebook.react.ReactRootView;
 import com.laomu.rncore.RNCore;
 import com.laomu.rncore.utils.RNLog;
@@ -17,12 +19,12 @@ import com.laomu.rncore.download.DownloadManager;
 public class RenderTask extends AsyncTask {
 
 
-    private Application rApplication;
+    private Context rApplication;
     private String rBundleUrl;
     private String rModuleName;
     private RenderCallback rCallback;
 
-    public RenderTask(Application application, String remoteUrl, String moduleName, RenderCallback callback) {
+    public RenderTask(Context application, String remoteUrl, String moduleName, RenderCallback callback, String baseJsBundleUrl) {
         rApplication = application;
         rBundleUrl = remoteUrl;
         rModuleName = moduleName;
@@ -54,7 +56,7 @@ public class RenderTask extends AsyncTask {
         }else {
             RNLog.e(" bundle file check failed : " + mergedFilePath);
         }
-        ReactInstanceManager instanceManager = RNCore.getInstance().renderReactInstanceManager(mergedFilePath,rModuleName);
+        ReactInstanceManager instanceManager = RNCore.getInstance().createReactInstanceManager(mergedFilePath,rModuleName);
 
         rCallback.onCreatedInstanceManager(instanceManager);
 
