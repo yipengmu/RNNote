@@ -6,7 +6,7 @@
     <application
       android:allowBackup="true"
       android:label="@string/app_name"
-      android:icon="@drawable/rnnote"
+      android:icon="@mipmap/lm_user_logo_default"
       android:name="com.rnnote.application.MyApplication"
       android:theme="@style/AppTheme">
       <activity

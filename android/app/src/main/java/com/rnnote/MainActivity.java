@@ -24,12 +24,11 @@ public class MainActivity extends Activity implements DefaultHardwareBackBtnHand
                 .setApplication(getApplication())
                 .setJSMainModuleName("index.android2")
                 .addPackage(new MainReactPackage())
-                .setUseDeveloperSupport(BuildConfig.DEBUG)
+                .setUseDeveloperSupport(true)
                 .setInitialLifecycleState(LifecycleState.RESUMED)
                 .build();
 
         mReactRootView.startReactApplication(mReactInstanceManager, "AwesomeProject", null);
-
         setContentView(mReactRootView);
     }
 
