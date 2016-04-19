@@ -14,7 +14,7 @@ var {
     ListView,
     StyleSheet,
     Text,DrawerLayoutAndroid,
-    View,Navigator,
+    View,Navigator,TouchableHighlight,
     } = React;
 
 var API_KEY = '7waqfqbprs7pajbz28mqf6vz';
@@ -75,61 +75,59 @@ var AwesomeProject = React.createClass({
                     />
 
                     <View style={styles.bottom}>
-                        <Image source={require('./uilib/img/icon_create_text.png')}
-                               style={{width: 60, height: 60}}/>
+
+                        <TouchableHighlight onPress={this._onPressButton}>
+                            <Image source={require('./uilib/img/icon_create_text.png')}
+                                   style={{width: 60, height: 60}}
+                                />
+                        </TouchableHighlight>
                     </View>
                 </View>
             </DrawerLayoutAndroid>
         );
         return Nav;
     },
+    _onPressButton(event) {
 
+        setTimeout(function() {
+            alert("button me")
+        }, 200);
 
-    renderLoadingView: function () {
-        return (
-            <View style={styles.container}>
-                <Text>
-                    Loading movies...
-                </Text>
-            </View>
-        );
+        console.log('Pressed!');
     },
-
-    renderMovie: function (movie) {
+    renderMovie:function(movie){
         return (
-            <View style={styles.container}>
-                <Image
-                    source={{uri: movie.posters.thumbnail}}
-                    style={styles.thumbnail}
-                />
-                <View style={styles.rightContainer}>
-                    <Text style={styles.title}>{movie.title}</Text>
-                    <Text style={styles.year}>{movie.year}</Text>
+            <TouchableHighlight onPress={() => this._pressRow(movie.id)}>
+                <View style={styles.container} key={movie.id}>
+                    <Image
+                        source={{uri:movie.posters.thumbnail}}
+                        style={styles.thumbnail} />
+                    <View style={styles.rightContainer}>
+                        <Text style={styles.title} numberOfLines={1}>
+                            {movie.title}
+                        </Text>
+                        <Text style={styles.year}>
+                            {movie.year}
+                        </Text>
+                    </View>
+                    <View style={styles.separator}></View>
                 </View>
-            </View>
+            </TouchableHighlight>
         );
     },
-});
 
-var FeedView = React.createClass({
-    goBack(){
-        this.props.navigator.push({name:"default"});
-    },
-
-    render() {
-        return (
-            <View style={styles.container}>
-                <Text style={styles.welcome} onPress={this.goBack} >
-                    I am Feed View! Tab to default view!
-                </Text>
-            </View>
-        )
+    _pressRow:function(rowID: number){
+        this.props.navigator.push({
+            title:'详情',
+            component:MovieView
+        })
     }
 });
 
-var WelcomeView = React.createClass({
+
+var TextNoteCreatePage = React.createClass({
     onPressFeed() {
-        this.props.navigator.push({name: 'feed'});
+        this.props.navigator.push({name: 'textNoteCreatePage'});
     },
 
 
@@ -137,7 +135,7 @@ var WelcomeView = React.createClass({
         return (
             <View style={styles.container}>
                 <Text style={styles.welcome} onPress={this.onPressFeed} >
-                    This is welcome view.Tap to go to feed view.
+                    textNoteCreatePage  This is welcome view.Tap to go to feed view.
                 </Text>
             </View>
         );
